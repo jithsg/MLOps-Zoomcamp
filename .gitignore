@@ -1,1 +1,10 @@
-01/data/
+**/data/*
+**/models/*
+mlruns/
+mlruns.db
+**/.ipynb_checkpoints/
+poetry.lock
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
