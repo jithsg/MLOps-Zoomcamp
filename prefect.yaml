@@ -3,7 +3,7 @@
 # control along with your flow code.
 
 # Generic metadata about this project
-name: '04'
+name: zoomcamp
 prefect-version: 2.14.17
 
 # build section allows you to manage and build docker images
@@ -37,7 +37,7 @@ deployments:
   version:
   tags: []
   description: The main training pipeline
-  entrypoint: orchestrate_deployment.py:main_flow
+  entrypoint: 04/orchestrate_deployment.py:main_flow
   parameters: {}
   work_pool:
     name: zoompool
@@ -45,6 +45,6 @@ deployments:
     job_variables: {}
   schedule:
     interval: 60.0
-    anchor_date: '2024-01-26T19:51:39.384622+00:00'
+    anchor_date: '2024-01-26T20:59:40.705027+00:00'
     timezone: UTC
     active: true
