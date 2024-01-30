@@ -1,0 +1,23 @@
+artifact_path: sklearn_mlflow_pyfunc
+flavors:
+  python_function:
+    artifacts:
+      data:
+        path: artifacts/diabetes.csv
+        uri: data_dir/diabetes.csv
+      model:
+        path: artifacts/diabetes_model.joblib
+        uri: model_dir/diabetes_model.joblib
+    cloudpickle_version: 3.0.0
+    code: code
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.11.7
+mlflow_version: 2.10.0
+model_size_bytes: 99514
+model_uuid: 83d08b6ed74343b38dbf7604db8c13b0
+run_id: 18df13cb9f634a59b358540af10aaab3
+utc_time_created: '2024-01-30 18:05:21.807463'
