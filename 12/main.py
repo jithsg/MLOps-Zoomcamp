@@ -20,16 +20,18 @@ mlflow.start_run(experiment_id=exp.experiment_id)
 
 diabetes = datasets.load_diabetes()
 
+df = pd.DataFrame(diabetes.data, columns=diabetes.feature_names)
+df["target"] = diabetes.target
 if not os.path.exists("data_dir"):
     os.mkdir("data_dir")
-    df = pd.DataFrame(diabetes.data, columns=diabetes.feature_names)
-    df["target"] = diabetes.target
     df.to_csv("data_dir/diabetes.csv", index=False)
 
-X = diabetes.data[:, np.newaxis, 2]
-y = diabetes.target
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
 
-# Split the data into training and testing sets
+
+
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # Create a Linear Regression model
@@ -49,3 +51,27 @@ y_pred = model.predict(X_test)
 # Print the coefficients (slope and intercept)
 print("Slope (Coefficient):", model.coef_[0])
 print("Intercept:", model.intercept_)
+
+artifacts_uri = mlflow.get_artifact_uri("model")
+
+X_test['target'] = y_test
+
+
+# Retrieve the active run ID
+run_id = mlflow.active_run().info.run_id
+
+# Construct the model URI
+model_uri = f"runs:/{run_id}/model"
+
+
+mlflow.evaluate(
+    model_uri,
+    X_test,
+    targets='target',  # Use the actual target values from your test set
+    model_type="regressor",
+    evaluators=["default"]
+)
+print(X_test)
+mlflow.end_run()
+
+
