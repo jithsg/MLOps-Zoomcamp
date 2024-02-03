@@ -13,8 +13,8 @@ import os
 
 mlflow.set_tracking_uri("http://localhost:5000")    
 
-mlflow.sklearn.autolog(registered_model_name="model-3")
-
+# mlflow.sklearn.autolog(registered_model_name="model-3")
+mlflow.sklearn.autolog()
 exp = mlflow.set_experiment("diabetes experiment-2")
 mlflow.start_run(experiment_id=exp.experiment_id)
 
@@ -62,6 +62,11 @@ run_id = mlflow.active_run().info.run_id
 
 # Construct the model URI
 model_uri = f"runs:/{run_id}/model"
+
+mlflow.register_model(
+    model_uri,
+    "model-4"
+)
 
 
 mlflow.evaluate(
