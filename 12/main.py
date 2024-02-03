@@ -13,7 +13,7 @@ import os
 
 mlflow.set_tracking_uri("http://localhost:5000")    
 
-mlflow.sklearn.autolog()
+mlflow.sklearn.autolog(registered_model_name="model-3")
 
 exp = mlflow.set_experiment("diabetes experiment-2")
 mlflow.start_run(experiment_id=exp.experiment_id)
