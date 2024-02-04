@@ -1,0 +1,11 @@
+name: "Elastic Net Regression"
+
+conda_env: conda.yaml
+
+entry_points:
+  ElasticNet:
+    command: "python3 train.py"
+    parameters:
+      alpha: {type: "float", default: 0.5}
+      l1_ratio: {type: "float", default: 0.5}
+      random_state: {type: "int", default: 42}
