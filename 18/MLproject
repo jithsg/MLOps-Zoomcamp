@@ -1,0 +1,6 @@
+name: "Housing Price Prediction"
+conda_env: conda.yaml
+entry_points:
+  Training:
+    command: "python train.py"
+
